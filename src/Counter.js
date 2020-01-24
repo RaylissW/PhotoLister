@@ -20,9 +20,10 @@ class Counter extends React.Component {
       this.props.dispatch({type: 'DECREMENT'});
   }
  randomizer =()=>{
+      debugger;
      let pic=this.props.pic;
      pic =shuffle(this.props.pic);
-     this.props.dispatch({type: 'RANDOMIZER', numToShow:pic[0]+1});
+     this.props.dispatch({type: 'RANDOMIZER', numToShow:pic[0]});
  }
   render() {
     return (
