@@ -12,14 +12,14 @@ const initialState = {
 function reducer(state=initialState, action){
     switch (action.type){
         case 'INCREMENT': {
-                            if (state.count ===10) return{count: state.count-9};
+                            if (state.count ===10) return{count: 1};
                             return{count: state.count + 1};
                            }
         case 'DECREMENT':  {
-            if (state.count ===1) return{count: state.count+9};
+            if (state.count ===1||state.count ===0 ) return{count: 10};
             return{count: state.count -1};
               };
-
+        case 'RANDOMIZER': return{count: action.numToShow};
         default: return state;
     }
 }
