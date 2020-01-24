@@ -5,17 +5,21 @@ import Counter from './Counter';
 import { createStore } from 'redux';
 
 const initialState = {
+    pic:Array(10).fill(1).map((el,i)=>(i+1)),
     count:0
 };
 
 function reducer(state=initialState, action){
     switch (action.type){
-        case 'INCREMENT': return{
-            count: state.count + 1
-        };
-        case 'DECREMENT': return{
-          count:state.count-1
-        };
+        case 'INCREMENT': {
+                            if (state.count ===10) return{count: state.count-9};
+                            return{count: state.count + 1};
+                           }
+        case 'DECREMENT':  {
+            if (state.count ===1) return{count: state.count+9};
+            return{count: state.count -1};
+              };
+
         default: return state;
     }
 }
