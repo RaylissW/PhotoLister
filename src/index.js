@@ -9,8 +9,9 @@ const initialState = {
     count:0
 };
 
-function reducer(state=initialState, action){
-    switch (action.type){
+function reducer(state= initialState, action){
+    const {type, payload} = action;
+    switch (type){
         case 'INCREMENT': {
                             if (state.count ===10) return{count: 1,pic: state.pic};
                             return{count: state.count + 1, pic: state.pic};
@@ -19,10 +20,11 @@ function reducer(state=initialState, action){
             if (state.count ===1||state.count ===0 ) return{count: 10, pic: state.pic};
             return{count: state.count -1, pic: state.pic};
               };
-        case 'RANDOMIZER': return{count: action.numToShow, pic: state.pic};
+        case 'RANDOMIZER': return{count: payload.numToShow, pic: state.pic}; // {...state, count: action.numToShow}
         default: return state;
     }
 }
+
 const store = createStore(reducer);
 
 const App = () => (

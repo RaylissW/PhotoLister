@@ -23,7 +23,7 @@ class Counter extends React.Component {
       debugger;
      let pic=this.props.pic;
      pic =shuffle(this.props.pic);
-     this.props.dispatch({type: 'RANDOMIZER', numToShow:pic[0]});
+     this.props.dispatch({type: 'RANDOMIZER', payload: {numToShow:pic[0]}});
  }
   render() {
     return (
