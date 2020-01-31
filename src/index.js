@@ -7,21 +7,22 @@ import { createStore } from 'redux';
 const initialState = {
     pic:Array(10).fill(1).map((el,i)=>(i+1)),
     count:0,
-    picShow:"0.jpg"
+    picShow: "/j0.jpg"
 };
 
 function reducer(state= initialState, action){
     const {type, payload} = action;
     switch (type){
-        case 'INCREMENT': { if (state.count ===10) return{count: 1,pic: state.pic};
-                            return{count: state.count + 1, pic: state.pic};
+        case 'INCREMENT': { if (state.count ===10) return{...state,count: 1};
+                            return{...state,count: state.count + 1};
                            }
         case 'DECREMENT':  {
-            if (state.count ===1||state.count ===0 ) return{count: 10, pic: state.pic};
+            if (state.count ===1||state.count ===0 ) return{...state,count: 10};
             return{count: state.count -1, pic: state.pic};
               };
-        case 'RANDOMIZER': return{count: payload.numToShow, pic: state.pic};
-        case 'SHOWER': {let picShow=state.count;
+        case 'RANDOMIZER': return{...state,count: payload.numToShow};
+        case 'SHOWER': {let picShow="/j";
+                            picShow+=state.count;
                             picShow+=".jpg";
                         return{...state, picShow:picShow}
         }// {...state, count: action.numToShow}
