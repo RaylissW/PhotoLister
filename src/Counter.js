@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { shuffle} from "./helpers";
+import './Counter.css';
 
 function mapStateToProps(state) {
     return {
         pic: state.pic,
-        count: state.count
+        count: state.count,
+        picShow:state.picShow
     };
 }
 
 class Counter extends React.Component {
-  state = { count: 0 }
+  //state = { count: 0 }
 
   increment = () => {
       this.props.dispatch({type: 'INCREMENT'});
@@ -25,15 +27,19 @@ class Counter extends React.Component {
      pic =shuffle(this.props.pic);
      this.props.dispatch({type: 'RANDOMIZER', payload: {numToShow:pic[0]}});
  }
+ shower=()=>{
+     this.props.dispatch({type: 'SHOWER'});
+ }
   render() {
     return (
-        <div>
-          <h2>~PhotoLister~</h2>
+        <div className={"Counter"}>
+            <h1 className={"C"}>~PhotoLister~</h1>
           <div>
-            <button onClick={this.decrement}>Left</button>
+            <button onClick={()=>{ this.decrement(); this.shower()}}>Left</button>
+              <text>{this.props.picShow}</text>
             <span>{this.props.count}</span>
-              <button onClick={this.increment}>Right</button>
-            <button onClick={this.randomizer}>Go Random</button>
+              <button onClick={()=>{ this.increment(); this.shower()}}>Right</button>
+            <button onClick={()=>{ this.randomizer(); this.shower()}}>Go Random</button>
           </div>
         </div>
     )
