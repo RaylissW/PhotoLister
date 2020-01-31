@@ -20,7 +20,8 @@ function mapStateToProps(state) {
     return {
         pic: state.pic,
         count: state.count,
-        picShow:state.picShow
+        picShow:state.picShow,
+        clicks: state.clicks
     };
 }
 
@@ -46,17 +47,39 @@ class Counter extends React.Component {
      this.props.dispatch({type: 'SHOWER'});
  }
   render() {
+      const phrases=["Еще Чуть-Чуть!!! XDXDXDXD",
+                     "Чуууу-яяяяяя~~~~~",
+                     "Стока Федек о_ОООООо",
+                     "Клик-Клик-Клик!!!",
+                     "<3<3Fuuu-huuu<3<3 ",
+                     "Уже почти открылась Ж-Ж ",
+                     "ТЫКЫТЫКТЫТКТЫТКТЫТКТЫК ЧПОК~",
+                     " @_@ just DO IT! *_*",
+                     "бЫСТРЕЕ врЕМЯ теЕКАЕТ!)",
+                     "))00))))0))))))0)))0!!",
+                   ];
+      let perePhrase;
+      const isTime =this.props.clicks%75===0;
+      if (isTime)
+          perePhrase=shuffle(phrases);
+      const isExpandTime =this.props.clicks/100>0;
     return (
         <div className={"Counter"}>
             <h1>~PhotoLister~</h1>
           <div>
-            <button onClick={()=>{ this.decrement(); this.shower()}}>Left</button>
               {console.log(this.props.picShow)}
               <img src={this.props.picShow}/>
-            <span>{this.props.count}</span>
-              <button onClick={()=>{ this.increment(); this.shower()}}>Right</button>
-            <button onClick={()=>{ this.randomizer(); this.shower()}}>Go Random</button>
+              {
+                  (isTime) ? (
+                      <text>{perePhrase[0]}</text>
+                  ): ""
+              }
           </div>
+            <div>
+            <button className={"Butt"}  onClick={()=>{ this.decrement(); this.shower()}}>Left</button>
+              <button className={"Butt"} onClick={()=>{ this.increment(); this.shower()}}>Right</button>
+              <button className={"Butt"} onClick={()=>{ this.randomizer(); this.shower()}}>Random</button>
+                </div>
         </div>
     )
   }

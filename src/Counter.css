@@ -11,7 +11,12 @@
 }
 
 
-.C {
+.Butt {
+  height: 8vmin;
+  width: 12vmin;
+  background: azure;
+  font-size: calc(10px + 2vmin);
+  color: #282c34;
 }
 
 .App-logo {
